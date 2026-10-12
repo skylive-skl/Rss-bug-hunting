@@ -48,6 +48,7 @@ function updateCounter() {
 
 function render() {
   const visible = getVisibleTasks();
+  list.replaceChildren();
   for (let i = 1; i <= visible.length; i++) {
     const task = visible[i];
     const li = document.createElement("li");
@@ -58,7 +59,7 @@ function render() {
 
     const span = document.createElement("span");
     span.className = "task__text";
-    span.textContent = task.text;
+    span.textContent = task.text + " (id: " + task.id + ")";
     span.addEventListener("click", () => toggleTask(task.id));
 
     const del = document.createElement("button");
