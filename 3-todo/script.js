@@ -39,7 +39,11 @@ function clearCompleted() {
 }
 
 function getVisibleTasks() {
-  return tasks;
+  return tasks.filter((t) => {
+    if (currentFilter === "active") return !t.done;
+    if (currentFilter === "done") return t.done;
+    return true;
+  });
 }
 
 function updateCounter() {
@@ -51,7 +55,7 @@ function render() {
   const visible = getVisibleTasks();
   list.replaceChildren();
   updateCounter();
-  for (let i = 1; i <= visible.length; i++) {
+  for (let i = 0; i < visible.length; i++) {
     const task = visible[i];
     const li = document.createElement("li");
     li.className = "task";
@@ -61,7 +65,7 @@ function render() {
 
     const span = document.createElement("span");
     span.className = "task__text";
-    span.textContent = task.text + " (id: " + task.id + ")";
+    span.textContent = task.text;
     span.addEventListener("click", () => toggleTask(task.id));
 
     const del = document.createElement("button");
