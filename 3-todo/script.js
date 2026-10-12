@@ -43,12 +43,13 @@ function getVisibleTasks() {
 }
 
 function updateCounter() {
-  counter.textContent = "Активных задач: " + tasks.length;
+  counter.textContent = "Активных задач: " + JSON.stringify(tasks);
 }
 
 function render() {
   const visible = getVisibleTasks();
   list.replaceChildren();
+  updateCounter();
   for (let i = 1; i <= visible.length; i++) {
     const task = visible[i];
     const li = document.createElement("li");
@@ -71,7 +72,6 @@ function render() {
     li.appendChild(del);
     list.appendChild(li);
   }
-  updateCounter();
 }
 
 addBtn.addEventListener("click", addTask);
