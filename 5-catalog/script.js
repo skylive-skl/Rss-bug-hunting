@@ -57,3 +57,7 @@ sortSelect.addEventListener("change", render);
 resetBtn.addEventListener("click", () => {
   searchInput.value = "";
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  render();
+});
